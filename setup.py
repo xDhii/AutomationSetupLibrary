@@ -9,10 +9,10 @@ ROOT = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(ROOT, 'README.md')).read()
 PY3 = sys.version_info[0] == 3
 
-KEYWORDS = ('AutomationSetupLibrary utils keywords for test automation'
+KEYWORDS = ('automationsetuplibrary utils keywords for test automation'
             'acceptance testing bdd')
 
-SHORT_DESC = ('AutomationSetupLibrary for test automation')
+SHORT_DESC = ('automationsetuplibrary for test automation')
 
 
 def read(*names, **kwargs):
@@ -34,7 +34,7 @@ def find_version(*file_paths):
 
 setup(
     name='robotframework-automationsetuplibrary',
-    version=find_version('AutomationSetupLibrary/version.py'),
+    version=find_version('automationsetuplibrary/version.py'),
     author='Adriano Valumin',
     author_email='adriano.valumin@outlook.com',
     url='https://github.com/xDhii',

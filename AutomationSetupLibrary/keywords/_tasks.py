@@ -68,7 +68,7 @@ class _Tasks(KeywordGroup):
     def create_workspace(self):
         """Creates the default workspace for any project / Check if the project workspace has all the needed artifacts"""
         profile = "profiles:\n  default:\n    robot_options: '-d results -P resources/pages'\n    rebot_options: ''"
-        index = "*** Settings ***\nLibrary     PageObjectLibrary\nLibrary     SeleniumLibrary\nLibrary     AutomationSetupLibrary"
+        index = "*** Settings ***\nLibrary     PageObjectLibrary\nLibrary     SeleniumLibrary\nLibrary     automationsetuplibrary"
         config = "browser: 'chrome'\nremote: False\nheadless: True\ndefault_max_wait_time: 10\nrun_env: 'QA2'"
         self.create_dir("resources")
         self.create_dir("resources/support")
