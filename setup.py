@@ -33,7 +33,7 @@ def find_version(*file_paths):
 
 
 setup(
-    name='robotframework-automationsetuplibrary',
+    name='automationsetuplibrary',
     version=find_version('automationsetuplibrary/version.py'),
     author='Adriano Valumin',
     author_email='adriano.valumin@outlook.com',
