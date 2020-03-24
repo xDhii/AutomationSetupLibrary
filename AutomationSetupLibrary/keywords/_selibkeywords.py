@@ -4,6 +4,7 @@ from .keywordgroup import KeywordGroup
 
 import os
 
+
 class _SelibKeywords(KeywordGroup):
 
     def __init__(self):
@@ -16,6 +17,10 @@ class _SelibKeywords(KeywordGroup):
     @property
     def selib(self):
         return BuiltIn().get_library_instance("SeleniumLibrary")
+
+    @property
+    def automationsetuolibrary(self):
+        return BuiltIn().get_library_instance("automationsetuplibrary")
 
     def wait_for_keyword(self, keyword, *args, retry="7x", interval="3s"):
         """Executes a given keyword until it pass or fail in the range of wait time
@@ -32,7 +37,8 @@ class _SelibKeywords(KeywordGroup):
         | wait for keyword | "click element" | id=element |
         | wait for keyword | "click element" | id=element | retry=10x | interval=10s |
         """
-        self.builtin.wait_until_keyword_succeeds(retry, interval, keyword, *args)
+        self.builtin.wait_until_keyword_succeeds(
+            retry, interval, keyword, *args)
 
     def wait_for_click(self, locator, input_retry="10x", input_interval="3s", slow_down=False, slow_speed=0.2):
         """Executes a click until it pass or fail in the range of wait time
@@ -59,14 +65,16 @@ class _SelibKeywords(KeywordGroup):
             original_speed = self.selib.get_selenium_speed()
             self.selib.set_selenium_speed(slow_speed)
         self.selib.wait_until_page_contains_element(locator)
-        status = self.builtin.run_keyword_and_return_status("element should be visible", locator)
+        status = self.builtin.run_keyword_and_return_status(
+            "element should be visible", locator)
         if not status:
             try:
                 self.wait_for_keyword("scroll element into view", args[0])
             except:
                 pass
             self.wait_for_keyword("set focus to element", locator)
-        self.wait_for_keyword("click element",  locator, retry=input_retry, interval=input_interval)
+        self.wait_for_keyword("click element",  locator,
+                              retry=input_retry, interval=input_interval)
         if slow_down:
             self.selib.set_selenium_speed(original_speed)
 
@@ -95,7 +103,8 @@ class _SelibKeywords(KeywordGroup):
             original_speed = self.selib.get_selenium_speed()
             self.selib.set_selenium_speed(slow_speed)
         self.selib.wait_until_page_contains_element(args[0])
-        status = self.builtin.run_keyword_and_return_status("element should be visible", args[0])
+        status = self.builtin.run_keyword_and_return_status(
+            "element should be visible", args[0])
         if not status:
             try:
                 self.wait_for_keyword("scroll element into view", args[0])
@@ -106,7 +115,6 @@ class _SelibKeywords(KeywordGroup):
         self.wait_for_keyword("input text", args[0], args[1])
         if slow_down:
             self.selib.set_selenium_speed(original_speed)
-
 
     def search_element_on_component(self, locator, text, attribute=False):
         """Get a webelement given a component and reference text
@@ -124,9 +132,11 @@ class _SelibKeywords(KeywordGroup):
         component = self.selib.get_webelements(locator)
         for element in component:
             if not attribute:
-                if text in self.selib.get_text(element): return element
+                if text in self.selib.get_text(element):
+                    return element
             else:
-                if text in self.selib.get_element_attribute(element, attribute): return element
+                if text in self.selib.get_element_attribute(element, attribute):
+                    return element
         raise Exception("Could not found the " + text + " in the component")
 
     def clear_text(self, locator):
