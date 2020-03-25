@@ -9,11 +9,10 @@ ROOT = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(ROOT, 'README.md')).read()
 PY3 = sys.version_info[0] == 3
 
-KEYWORDS = ('automationsetuplibrary utils keywords for test automation'
-            'acceptance testing bdd')
+KEYWORDS = ('Sovos utils keywords for test automation on the Sovos systems'
+            'acceptancetesting atdd bdd')
 
-SHORT_DESC = ('automationsetuplibrary for test automation')
-
+SHORT_DESC = ('Sovos Libraries for test automation')
 
 def read(*names, **kwargs):
     with io.open(
@@ -21,7 +20,6 @@ def read(*names, **kwargs):
         encoding=kwargs.get("encoding", "utf8")
     ) as fp:
         return fp.read()
-
 
 def find_version(*file_paths):
     version_file = read(*file_paths)
@@ -31,13 +29,11 @@ def find_version(*file_paths):
         return version_match.group(1)
     raise RuntimeError("Unable to find version string.")
 
-
 setup(
-    name='automationsetuplibrary',
-    version=find_version('automationsetuplibrary/version.py'),
+    name='robotframework-automationsetup',
+    version=find_version('AutomationSetup/version.py'),
     author='Adriano Valumin',
     author_email='adriano.valumin@outlook.com',
-    url='https://github.com/xDhii',
     description=SHORT_DESC,
     long_description=README,
     license='',
@@ -48,7 +44,7 @@ setup(
         'Operating System :: OS Independent',
         'License :: OSI Approved :: ',
         'Natural Language :: English',
-    ],
+      ],
     setup_requires=[],
     install_requires=[
         'pathlib',
